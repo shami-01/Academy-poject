@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Student List</title>
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            padding-top: 80px;
+            padding-bottom: 50px; /* Neeche thoda space add kiya */
+        }
+        h1 { text-align: center; color: #333; }
+        table {
+            width: 100%; border-collapse: collapse; margin-top: 20px;
+            background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px 15px; border: 1px solid #ddd;
+            text-align: left; word-wrap: break-word;
+        }
+        th { background-color: #333; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr:hover { background-color: #f1f1f1; }
+        .container {
+            max-width: 95%; margin: 0 auto;
+            color: #000; /* Text color ko black kiya */
+        }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Delete button ka style */
+        .delete-btn {
+            color: #fff;
+            background-color: #dc3545; /* Red color */
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .delete-btn:hover {
+            background-color: #c82333; /* Darker red */
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="nav-brand">Forgress Elite Academy</a>
+            <button class="hamburger" id="hamburger-button">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/admin">Admin Panel</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Student Registration List</h1>
+        <p>
+            <a href="/">← Back to Homepage</a>
+        </p>
+
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Student Name</th>
+                        <th>DOB</th>
+                        <th>Gender</th>
+                        <th>Contact</th>
+                        <th>WhatsApp</th>
+                        <th>Email</th>
+                        <th>School Name</th>
+                        <th>Current Class</th>
+                        <th>Father's Name</th>
+                        <th>Mother's Name</th>
+                        <th>Aadhaar</th>
+                        <th>Address</th>
+                        <th>Course Interest</th>
+                        <th>Requirements</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.student_name }}</td>
+                        <td>{{ student.dob }}</td>
+                        <td>{{ student.gender }}</td>
+                        <td>{{ student.contact }}</td>
+                        <td>{{ student.whatsapp }}</td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.school_name }}</td>
+                        <td>{{ student.current_class }}</td>
+                        <td>{{ student.father_name }}</td>
+                        <td>{{ student.mother_name }}</td>
+                        <td>{{ student.aadhaar }}</td>
+                        <td>{{ student.address }}</td>
+                        <td>{{ student.course_interest }}</td>
+                        <td>{{ student.requirements }}</td>
+                        
+                        <td>
+                            <a href="{{ url_for('delete_student', id=student.id) }}" 
+                               class="delete-btn" 
+                               onclick="return confirm('Kya aap is student ({{ student.student_name }}) ko pakka delete karna chahte hain?');">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if not students %}
+            <p style="text-align: center; margin-top: 20px;">Abhi tak koi registration nahi hua hai.</p>
+        {% endif %}
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

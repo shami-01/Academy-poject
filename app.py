@@ -13,8 +13,8 @@ users = {
 }
 
 # === 1. PEHLE DATABASE KO CONFIGURE KAREIN ===
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'students.db')
+# Yeh nayi line hai (poora path)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/shami03/Academy-poject/students.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # === 2. AB DATABASE KO APP SE CONNECT KAREIN ===

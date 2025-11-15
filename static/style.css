@@ -1,0 +1,377 @@
+/* === BASIC SETUP === */
+:root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #333;
+    --text-color: #ffffff;
+    --form-bg: #ffffff;
+    --form-text: #000000;
+    --highlight-color: #f0c428; /* Yellow from logo */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-size: 16px;
+    padding-top: 60px; /* Navbar ke liye jagah */
+}
+
+main {
+    max-width: 1100px; /* Desktop ke liye bada size */
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* === NAVBAR STYLES (MOBILE-FIRST) === */
+.navbar {
+    background-color: #222;
+    border-bottom: 1px solid var(--secondary-color);
+    padding: 0 1rem;
+    position: fixed; /* Taaki scroll karne par bhi dikhe */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 60px;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.nav-brand {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* --- Hamburger Button (Three Bars) --- */
+.hamburger {
+    display: block; /* Mobile par dikhega */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+/* --- Navigation Links (Mobile) --- */
+.nav-links {
+    display: none; /* Mobile par default hide rahega */
+    position: absolute;
+    top: 60px; /* Navbar ke neeche */
+    left: 0;
+    right: 0;
+    background-color: #222;
+    width: 100%;
+    border-top: 1px solid var(--secondary-color);
+}
+
+.nav-links.show {
+    display: block; /* JavaScript is class ko add/remove karega */
+}
+
+.nav-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-links li {
+    text-align: center;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.nav-links li:last-child {
+    border-bottom: none;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    padding: 1rem;
+}
+
+.nav-links a:hover {
+    background-color: var(--secondary-color);
+}
+
+
+/* === HEADER === */
+header {
+    text-align: center;
+    padding: 1.5rem 1rem;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}
+
+header h1 {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+header p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* === PROMO CARD === */
+.promo-card {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.promo-card h2 {
+    margin-top: 0;
+}
+
+.promo-card .excellence {
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+
+/* === FEATURES === */
+.features {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.feature-box {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.feature-box h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.feature-box p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #ccc;
+}
+
+/* === FORM CONTAINER === */
+.form-container {
+    background-color: var(--form-bg);
+    color: var(--form-text);
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.form-header {
+    background-color: #222; /* Darker header for form */
+    color: var(--text-color);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    margin: -1.5rem -1.5rem 1.5rem -1.5rem; /* Pushes to edges */
+}
+
+.form-header h3 {
+    margin: 0 0 0.25rem 0;
+}
+.form-header p {
+    margin: 0;
+}
+.form-header .subtitle {
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+.form-container h3 {
+    text-align: center;
+}
+.form-container > p {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column by default */
+    gap: 1rem;
+}
+
+/* For side-by-side fields on wider screens */
+@media (min-width: 500px) {
+    form {
+        grid-template-columns: 1fr 1fr; /* Two columns */
+    }
+    .full-width {
+        grid-column: 1 / -1; /* Span full width */
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Important for padding */
+    background-color: #f9f9f9;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.register-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.register-btn:hover {
+    background-color: #444;
+}
+
+/* === FOOTER === */
+.visit-us {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-color); /* Footer text ko white rakha */
+}
+
+.visit-us h3 {
+    margin-top: 0;
+}
+
+
+/* === DESKTOP VERSION (Media Query) === */
+/* Jab screen 768px se badi hogi */
+
+@media (min-width: 768px) {
+    
+    /* 1. Hamburger button ko hide karo */
+    .hamburger {
+        display: none;
+    }
+
+    /* 2. Nav links ko hamesha dikhao (flex-direction: row) */
+    .nav-links {
+        display: flex;
+        position: static;
+        width: auto;
+        border: none;
+        background-color: transparent;
+    }
+
+    .nav-links ul {
+        flex-direction: row;
+    }
+
+    .nav-links li {
+        border: none;
+    }
+
+    .nav-links a {
+        padding: 0 1rem; /* Upar-neeche 0, left-right 1rem */
+        line-height: 60px; /* Navbar ki height ke barabar */
+    }
+
+    .nav-links a:hover {
+        background-color: transparent;
+        color: var(--highlight-color);
+    }
+
+    /* 3. Baaki layout ko theek karo */
+
+    /* Header (logo wala) */
+    header {
+        text-align: center;
+        padding: 2.5rem 1rem;
+    }
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    /* Features ko 2 ki jagah 4 column mein dikhao */
+    .features {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+
+/* === MAP STYLING (Footer ke liye) === */
+/* YEH NAYA CODE HAI */
+
+.map-container {
+    width: 100%;
+    margin: 1.5rem 0;
+    border-radius: 10px;
+    overflow: hidden; /* Border-radius ko iframe par apply karne ke liye */
+}
+
+.map-container iframe {
+    width: 100%;
+    display: block; /* Neeche ka extra space hatane ke liye */
+}
